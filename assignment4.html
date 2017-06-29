@@ -1,0 +1,64 @@
+<html lang="en-US">
+<head>
+  <meta name="viewport" content="width=device-width">
+  <meta charset="UTF-8">
+  <title>Simple paint example</title>
+  <style type="text/css">
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: helvetica,arial,sans-serif;
+    }
+    canvas {
+      display: block;
+      background: #ccc;
+    }   
+  </style>
+</head>
+<body>
+  <canvas id="change"></canvas>
+<script>
+var c = document.querySelector('canvas');
+var cx = c.getContext('2d');
+var mousedown = false;
+function setupCanvas() {
+    c.height = 600;
+    c.width = 1000;
+    cx.lineWidth = randomBrush();
+    cx.lineCap = 'round';
+    cx.strokeStyle = randomColor(); 
+}
+
+function onmousemove(ev) {
+    var x = ev.clientX;
+    var y = ev.clientY;
+    paint(x, y);
+}
+function paint(x, y) {
+    cx.beginPath();
+    cx.moveTo(x, y);
+    cx.lineTo(x, y);
+    cx.stroke();
+    cx.closePath();
+}
+function randomBrush(){
+ var num = Math.floor(Math.random()*(30));
+    return num;
+}
+function randomColor() {
+    var r = Math.floor(Math.random()*(256)) | 0,
+        g = Math.floor(Math.random()*(256)) | 0,
+        b = Math.floor(Math.random()*(256)) | 0;
+        return 'rgb(' + r + ',' + g + ',' + b + ')';
+    }
+function changeClick() {
+    document.getElementById("change").innerHTML = "random";
+    cx.strokeStyle = randomColor();
+    cx.lineWidth = randomBrush();
+} 
+document.getElementById("change").onclick = function() {changeClick()};
+c.addEventListener('mousemove', onmousemove, false);
+setupCanvas();
+</script>  
+</body>
+</html>
