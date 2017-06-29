@@ -16,6 +16,7 @@
   </style>
 </head>
 <body>
+    <p id="eraser">eraser</p>
   <canvas id="change"></canvas>
 <script>
 var c = document.querySelector('canvas');
@@ -56,6 +57,15 @@ function changeClick() {
     cx.strokeStyle = randomColor();
     cx.lineWidth = randomBrush();
 } 
+
+document.getElementById("eraser").addEventListener("click", myFunction);
+
+function myFunction() {
+    cx.lineWidth = 40;
+    cx.lineCap = 'square';
+    cx.strokeStyle ='rgb(242, 255, 208)';
+}
+    
 document.getElementById("change").onclick = function() {changeClick()};
 c.addEventListener('mousemove', onmousemove, false);
 setupCanvas();
