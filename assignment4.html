@@ -16,8 +16,10 @@
   </style>
 </head>
 <body>
-    <p id="eraser">eraser</p>
-  <canvas id="change"></canvas>
+    <p id="eraser"><img src="clear_eraser.png" width="100px"></p>
+    <p id="fill"><img src="fill.png" width="100px"></p>
+    <canvas id="change"></canvas>
+    
 <script>
 var c = document.querySelector('canvas');
 var cx = c.getContext('2d');
@@ -53,12 +55,13 @@ function randomColor() {
         return 'rgb(' + r + ',' + g + ',' + b + ')';
     }
 function changeClick() {
-    document.getElementById("change").innerHTML = "random";
+    document.getElementById('change').innerHTML = 'random';
     cx.strokeStyle = randomColor();
     cx.lineWidth = randomBrush();
+    cx.lineCap = 'round';
 } 
 
-document.getElementById("eraser").addEventListener("click", myFunction);
+document.getElementById("eraser").addEventListener('click', myFunction);
 
 function myFunction() {
     cx.lineWidth = 40;
