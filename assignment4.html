@@ -12,14 +12,20 @@
     canvas {
         display: block;
         background: rgb(242, 255, 208);
-    }   
+    } 
+      p{
+          display: block;
+      }
   </style>
 </head>
 <body>
     
     <canvas id="change"></canvas>
-    <p id="eraser"><img src="clear_eraser.png" width="100px"></p>
-    <p id="fill"><img src="fill.png" width="100px"></p>
+    <table>
+       <tr>
+    <td id="eraser"><img src="clear_eraser.png" width="100px"></td> <td id="fill"><img src="fill.png" width="100px"></td>
+           </tr>
+    </table>
     
 <script>
 var c = document.querySelector('canvas');
@@ -61,7 +67,6 @@ function changeClick() {
     cx.lineWidth = randomBrush();
     cx.lineCap = 'round';
 } 
-
 document.getElementById("eraser").addEventListener('click', erase);
 
 function erase() {
@@ -69,14 +74,12 @@ function erase() {
     cx.lineCap = 'square';
     cx.strokeStyle ='rgb(242, 255, 208)';
 }
-
 document.getElementById("fill").addEventListener('click', fill);
 
 function fill() {
     cx.clearRect(0, 0, c.width, c.height);
 
 }
-    
 document.getElementById("change").onclick = function() {changeClick()};
 c.addEventListener('mousemove', onmousemove, false);
 setupCanvas();
